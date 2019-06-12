@@ -1,0 +1,16 @@
+.square {
+
+
+	  background: linear-gradient(to bottom right, black, #69a1ad);;
+	  padding: 0px;
+	  
+	  border: 2px solid black;
+	  font-size: 3em;
+	  text-align: center;
+	  font-weight: bolder;
+	  /*line-height: 45px;*/
+	  margin: 0;
+	  border-radius: 6px; 
+
+}
+
