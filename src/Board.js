@@ -10,15 +10,12 @@ class Board extends React.Component  {
 	    this.state = {
 	      squares: Array(9).fill(null),
 	      xIsNext: true,
-	      blinkStatus : true,
 	      turns: 0,
 	    };
 
 	    this.handleReset = this.handleReset.bind(this);
 	    this.showStatus = this.showStatus.bind(this);
 	}
-
-
 
 	calculateWinner(squares) {
 		
@@ -42,8 +39,6 @@ class Board extends React.Component  {
 	  return null;
 	}
 
-
-
 	handleClick(i) {
 
 	    const squares = this.state.squares.slice();
@@ -57,11 +52,8 @@ class Board extends React.Component  {
 	    
 	    this.setState({	squares: squares, 
 	    				xIsNext: !this.state.xIsNext,
-	    				blinkStatus : true,
 	    				turns: turns, });
  	}
-
-	
 	
   	renderSquares() {
 
@@ -84,16 +76,13 @@ class Board extends React.Component  {
 			} 
 
 		return squaresSet;		
-
   	}
 
-    
   	showStatus() {
 
   		this.setState((prevState) => {
       		return { 
         		
-        		blinkStatus : !prevState.blinkStatus,
         		squares : prevState.squares, 
 	    		xIsNext : prevState.xIsNext,
 	    		turns :	prevState.turns,
@@ -101,22 +90,12 @@ class Board extends React.Component  {
     	});
   	}
 
-    componentDidMount() {
-    	
-    	setInterval(this.showStatus, 250);
-    	
-    }
-
-    
-
   	handleReset() {
 		
   		this.setState({	squares: Array(9).fill(null), 
 	    				xIsNext: true,
 	    				turns : 0, });
-  		
  	}
-
 
   	render() {
 
@@ -133,12 +112,10 @@ class Board extends React.Component  {
 	      }
 
 	      else {
-	      	status = this.state.blinkStatus ? 
-	      			('Next player: ' + (this.state.xIsNext ? 'X' : 'O')) : "";
+	      	status = "Next player: " + (this.state.xIsNext ? 'X' : 'O');
 	     }
 		
-	   
-
+	
 	   return (
 	      
 	   		<div>
@@ -147,23 +124,23 @@ class Board extends React.Component  {
 		     		<h1 className="title">Tic Tac Toe</h1>
 		    	</div>
 
+			   <div>
+				   <div className={winningNums ? "gameEnd" : "next"}> {status} </div>
+			   </div>
+
+
+			   <div className='resetWrapper'>
+				   <button className="resetBtn"
+	   				   onClick={this.handleReset}> Reset </button>
+			   </div>
+
 		    	<div>
-			     
-			    	<button className="resetBtn" 
-			      		  onClick={this.handleReset}> Reset </button>
-
 			    	<div className="container"> {this.renderSquares()} </div>
-
-			    	<div className={winningNums ? "gameEnd" : "next"}> {status} </div>
-
 	    		</div> 
 	    		
 	    	</div>
-
-
     	);
 	}
 }
-
 
 export default Board; 
